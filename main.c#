@@ -1,0 +1,198 @@
+using System;
+using System.IO;
+using static System.Console;
+
+namespace ConsoleApp10
+{
+    class Program
+    {
+
+
+        delegate int Operation(int num1, int num2);
+        delegate int Operation3(int num1, int num2, int num3);
+
+        static void Main(string[] args)
+        {
+
+            var result = 0;
+
+
+            Operation operation;
+            Operation3 operation3;
+
+
+
+            WriteLine("Со сколькими числами будете проводить операции? 2 или 3 ? ");
+            var numQ = Convert.ToInt32(ReadLine());
+            switch (numQ)
+            {
+                case 2:
+                    {
+                        WriteLine("Введите 1 число:");
+                        var num1 = Convert.ToInt32(ReadLine());
+                        WriteLine("Введите 2 число:");
+                        var num2 = Convert.ToInt32(ReadLine());
+                        WriteLine("Нажмите для действия: ");
+                        WriteLine("1 - сложить, 2 - разделить, 3 - умножить, 4 - разделить, 5 - показать максимальное число, 6 - показат минимальное число ");
+                        var select = Convert.ToInt32(ReadLine());
+                        switch (select)
+                        {
+                            case 1:
+                                result = Act(num1, num2, Plus);
+                                WriteLine(result);
+                                break;
+                            case 2:
+                                result = Act(num1, num2, Minus);
+                                WriteLine(result);
+                                break;
+                            case 3:
+                                result = Act(num1, num2, Multiply);
+                                WriteLine(result);
+                                break;
+                            case 4:
+                                result = Act(num1, num2, Devide);
+                                WriteLine(result);
+                                break;
+                            case 5:
+                                result = Act(num1, num2, Max);
+                                WriteLine(result);
+                                break;
+                            case 6:
+                                result = Act(num1, num2, Min);
+                                WriteLine(result);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+                    }
+
+                case 3:
+                    {
+
+                        WriteLine("Введите 1 число:");
+                        var num1 = Convert.ToInt32(ReadLine());
+                        WriteLine("Введите 2 число:");
+                        var num2 = Convert.ToInt32(ReadLine());
+                        WriteLine("Введите 3 число:");
+                        var num3 = Convert.ToInt32(ReadLine());
+                        WriteLine("Нажмите для действия: ");
+                        WriteLine("1 - сложить, 2 - разделить, 3 - умножить, 4 - разделить, 5 - показать максимальное число, 6 - показат минимальное число ");
+                        var select = Convert.ToInt32(ReadLine());
+                        switch (select)
+                        {
+                            case 1:
+                                result = Act3(num1, num2, num3, Plus3);
+                                WriteLine(result);
+                                break;
+                            case 2:
+                                result = Act3(num1, num2, num3, Minus3);
+                                WriteLine(result);
+                                break;
+                            case 3:
+                                result = Act3(num1, num2, num3, Multiply3);
+                                WriteLine(result);
+                                break;
+                            case 4:
+                                result = Act3(num1, num2, num3, Devide3);
+                                WriteLine(result);
+                                break;
+                            case 5:
+                                result = Act3(num1, num2, num3, Max3);
+                                WriteLine(result);
+                                break;
+                            case 6:
+                                result = Act3(num1, num2, num3, Min3);
+                                WriteLine(result);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+
+                    }
+
+            }
+
+
+        }
+
+
+
+        static int Act(int num1, int num2, Operation operation)
+        {
+            return operation(num1, num2);
+        }
+
+        static int Act3(int num1, int num2, int num3, Operation3 operation3)
+        {
+            return operation3(num1, num2, num3);
+        }
+
+        static int Plus(int n1, int n2)
+        {
+            return n1 + n2;
+        }
+
+        static int Minus(int n1, int n2)
+        {
+            return n1 - n2;
+        }
+
+        static int Devide(int n1, int n2)
+        {
+            if (n2 != 0)
+                return n1 / n2;
+            else
+                return -00000;
+        }
+
+        static int Multiply(int n1, int n2)
+        {
+            return n1 * n2;
+        }
+
+        static int Max(int n1, int n2)
+        {
+            return n2 > n1 ? n2 : n1;
+        }
+        static int Min(int n1, int n2)
+        {
+            return n2 < n1 ? n1 : n2;
+        }
+
+
+
+        static int Plus3(int n1, int n2, int n3)
+        {
+            return n1 + n2 + n3;
+        }
+
+        static int Minus3(int n1, int n2, int n3)
+        {
+            return n1 - n2 - n3;
+        }
+
+        static int Devide3(int n1, int n2, int n3)
+        {
+            if (n2 != 0 && n3 != 0)
+                return n1 / n2 / n3;
+            else
+                return -00000;
+        }
+
+        static int Multiply3(int n1, int n2, int n3)
+        {
+            return n1 * n2 * n3;
+        }
+
+        static int Max3(int n1, int n2, int n3)
+        {
+            return n3 > n2 && n3 > n1 ? n3 : n2;
+        }
+        static int Min3(int n1, int n2, int n3)
+        {
+            return n3 < n1 && n3 < n2 ? n1 : n2;
+        }
+    }
+}
